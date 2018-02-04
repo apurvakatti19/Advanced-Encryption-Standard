@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+<link href="css/jquery-ui.css" rel="stylesheet">
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="js/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="js/atmvalidate.js"></script>
+<script src="js/datavalidateenc.js"></script>
+<script src="js/datavalidatedec.js"></script>
+
+<script src="js/fileSaver.js"></script>
+<script src="js/imagevalidateenc.js"></script>
+<script src="js/imagevalidatedec.js"></script>
+<script src="js/audiovalidateenc.js"></script>
+<script src="js/audiovalidatedec.js"></script>
+<script src="js/videovalidateenc.js"></script>
+<script src="js/videovalidatedec.js"></script>
+<script src="js/filevalidateenc.js"></script>
+<script src="js/filevalidatedec.js"></script>
+
+<script type="text/javascript"></script>
+
+<script>
+	$(document).ready(function() {
+
+		$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+			localStorage.setItem('activeTab', $(e.target).attr('href'));
+		});
+		var activeTab = localStorage.getItem('activeTab');
+		console.log(activeTab);
+		if (activeTab) {
+			$('#myTab a[href="' + activeTab + '"]').tab('show');
+
+		}
+	});
+</script>
+<style type="text/css">
+.bs-example {
+	margin: 20px;
+}
+
+mark {
+	background-color: black;
+	color: white;
+}
+
+#popupBasic-popup {
+	width: 80%;
+	left: 20%;
+	right: 10%;
+	height: 100%;
+	opacity: 1.0;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+#une {
+	margin-top: 10px;
+}
+
+#reg {
+	margin-top: 10px;
+}
+
+.a13B {
+	color: #F00;
+}
+
+nav {
+	max-width: 2000px;
+	mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff
+		25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
+}
+
+nav ul {
+	text-align: right;
+	width: 100%;
+	box-shadow: 0 0 25px rgba(0, 0, 0, 0.0), inset 0 0 1px
+		rgba(255, 255, 255, 0.6);
+}
+
+nav ul li {
+	display: inline-block;
+}
+
+nav ul li a {
+	padding: 20px;
+	font-family: "Roboto";
+	color: rgba(43, 194, 83, 0.2);
+	text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.4);
+	font-size: 25px;
+	text-decoration: none;
+}
+
+nav ul li a:hover {
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 1px
+		rgba(255, 255, 255, 0.6);
+	background: rgba(0, 0, 0, 0.1);
+	color: rgba(0, 0, 0, 0.7);
+}
+</style>
+<style>
+#all {
+	max-width: 2000px;
+	max-height: 160px;
+	padding: 0px;
+	mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff
+		25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
+	text-align: center;
+	width: 100%;
+	box-shadow: 0 0 25px rgba(0, 0, 0, 0.0), inset 0 0 1px
+		rgba(255, 255, 255, 0.6);
+}
+</style>
+<style>
+#tabs-1 {
+	font-size: 14px;
+	width: 78%;
+	border: none;
+}
+
+.ui-tabs-1 .status1 {
+	padding: 10px;
+}
+
+#tabs-2 {
+	background: rgba(45, 45, 45, 0.6);
+	padding: 10px;
+}
+
+#tabs-3 {
+	background: rgba(45, 45, 45, 0.6);
+	padding: 10px;
+}
+
+#tabs-4 {
+	background: rgba(45, 45, 45, 0.6);
+	padding: 10px;
+}
+
+#tabs-5 {
+	background: rgba(45, 45, 45, 0.6);
+	padding: 10px;
+}
+
+#tabs-6 {
+	background: rgba(45, 45, 45, 0.6);
+	padding: 10px;
+}
+
+#tabs-7 {
+	background: rgba(45, 45, 45, 0.6);
+	padding: 10px;
+}
+
+#tabs-1 .ui-widget-header a {
+	border: none;
+	background: rgba(45, 45, 45, 0.9);
+}
+
+#tabs-1 .ui-state-default a {
+	color: #FFFFFF;
+	border: none;
+}
+
+#tabs-1 .ui-state-active a {
+	color: #000000;
+	border: none;
+}
+
+#tabs-1 .ui-state-hover a, .ui-state-focus a {
+	color: #17468B;
+	border: none;
+}
+
+.ui-widget-content {
+	border: none;
+}
+
+.ui-widget-header {
+	background: transparent;
+	font-weight: normal;
+	border: none;
+}
+
+.ui-widget-footer {
+	background: transparent;
+	font-weight: normal;
+	border: none;
+}
+
+.ui-page {
+	background: #000;
+	background-image: url(images/stock4.jpg);
+	background-size: 1400px 800px;
+	background-repeat: no-repeat;
+	text-shadow: none;
+}
+
+.ui-page .ui-header {
+	background: rgba(45, 45, 45, 0.6);
+	text-align: center;
+}
+
+.ui-body-b {
+	text-align: left;
+	background: transparent;
+	border: none;
+	color: #fcfcfc;
+	background: transparent;
+	position: static;
+	text-shadow: none;
+}
+
+.ui-body-c {
+	text-align: left;
+	background: transparent;
+	border: none;
+	color: #fbfbfb;
+	background: rgb(45, 45, 45);
+	position: static;
+	text-shadow: none;
+}
+
+.ui-title {
+	color: #000000;
+}
+</style>
+<style>
+#progress_bar2 {
+	margin: 10px 0;
+	padding: 3px;
+	border: 1px solid #000;
+	font-size: 14px;
+	clear: both;
+	opacity: 0;
+	-moz-transition: opacity 1s linear;
+	-o-transition: opacity 1s linear;
+	-webkit-transition: opacity 1s linear;
+}
+
+#progress_bar2.loading {
+	opacity: 0.9;
+}
+
+#progress_bar2 .percent2 {
+	background-color: #f4f9ff;
+	height: auto;
+	width: 5;
+	position: relative;
+	-webkit-border-radius: 25px;
+	border-radius: 25px;
+	padding: 10px;
+	box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+	background: #555;
+	-moz-border-radius: 25px;
+	-webkit-border-radius: 25px;
+	border-radius: 25px;
+	padding: 10px;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	background-color: rgb(89, 4, 148);
+	background-image: linear-gradient(center bottom, rgb(210, 249, 205) 37%,
+		rgb(84, 240, 84) 69%);
+	box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px
+		rgba(0, 0, 0, 0.4);
+	position: relative;
+	overflow: hidden;
+	background-image: linear-gradient(-45deg, rgba(0, 0, 255, 0.2) 25%,
+		transparent 25%, transparent 50%, rgba(0, 0, 255, 0.2) 50%,
+		rgba(0, 0, 255, 0.2) 75%, transparent 75%, transparent);
+	z-index: 1;
+	background-size: 50px 50px;
+	animation: move 2s linear infinite;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	overflow: hidden;
+}
+
+select option {
+	margin: 40px;
+	background: #48D1CC;
+	color: #4B0082;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+</style>
+<style>
+#progress_bar1 {
+	margin: 10px 0;
+	padding: 3px;
+	border: 1px solid #000;
+	font-size: 14px;
+	clear: both;
+	opacity: 0;
+	-moz-transition: opacity 1s linear;
+	-o-transition: opacity 1s linear;
+	-webkit-transition: opacity 1s linear;
+}
+
+#progress_bar1.loading {
+	opacity: 0.9;
+}
+
+#progress_bar1 .percent1 {
+	background-color: #65AAFF;
+	height: auto;
+	width: 5;
+	position: relative;
+	-webkit-border-radius: 25px;
+	border-radius: 25px;
+	padding: 10px;
+	box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+	background: #555;
+	-moz-border-radius: 25px;
+	-webkit-border-radius: 25px;
+	border-radius: 25px;
+	padding: 10px;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	background-color: rgb(89, 4, 148);
+	background-image: linear-gradient(center bottom, rgb(210, 249, 205) 37%,
+		rgb(84, 240, 84) 69%);
+	box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px
+		rgba(0, 0, 0, 0.4);
+	position: relative;
+	overflow: hidden;
+	background-image: linear-gradient(-45deg, rgba(0, 0, 255, 0.2) 25%,
+		transparent 25%, transparent 50%, rgba(0, 0, 255, 0.2) 50%,
+		rgba(0, 0, 255, 0.2) 75%, transparent 75%, transparent);
+	z-index: 1;
+	background-size: 50px 50px;
+	animation: move 2s linear infinite;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	overflow: hidden;
+}
+</style>
+<style>
+#progress_bar3 {
+	margin: 10px 0;
+	padding: 3px;
+	border: 1px solid #000;
+	font-size: 14px;
+	clear: both;
+	opacity: 0;
+	-moz-transition: opacity 1s linear;
+	-o-transition: opacity 1s linear;
+	-webkit-transition: opacity 1s linear;
+}
+
+#progress_bar3.loading {
+	opacity: 0.9;
+}
+
+#progress_bar3 .percent3 {
+	background-color: #f4f9ff;
+	height: auto;
+	width: 5;
+	position: relative;
+	-webkit-border-radius: 25px;
+	border-radius: 25px;
+	padding: 10px;
+	box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+	background: #555;
+	-moz-border-radius: 25px;
+	-webkit-border-radius: 25px;
+	border-radius: 25px;
+	padding: 10px;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	background-color: rgb(89, 4, 148);
+	background-image: linear-gradient(center bottom, rgb(210, 249, 205) 37%,
+		rgb(84, 240, 84) 69%);
+	box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px
+		rgba(0, 0, 0, 0.4);
+	position: relative;
+	overflow: hidden;
+	background-image: linear-gradient(-45deg, rgba(0, 0, 255, 0.2) 25%,
+		transparent 25%, transparent 50%, rgba(0, 0, 255, 0.2) 50%,
+		rgba(0, 0, 255, 0.2) 75%, transparent 75%, transparent);
+	z-index: 1;
+	background-size: 50px 50px;
+	animation: move 2s linear infinite;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	overflow: hidden;
+}
+</style>
+<style>
+#progress_bar4 {
+	margin: 10px 0;
+	padding: 3px;
+	border: 1px solid #000;
+	font-size: 14px;
+	clear: both;
+	opacity: 0;
+	-moz-transition: opacity 1s linear;
+	-o-transition: opacity 1s linear;
+	-webkit-transition: opacity 1s linear;
+}
+
+#progress_bar4.loading {
+	opacity: 0.9;
+}
+
+#progress_bar4 .percent4 {
+	background-color: #f4f9ff;
+	height: auto;
+	width: 5;
+	position: relative;
+	-webkit-border-radius: 25px;
+	border-radius: 25px;
+	padding: 10px;
+	box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+	background: #555;
+	-moz-border-radius: 25px;
+	-webkit-border-radius: 25px;
+	border-radius: 25px;
+	padding: 10px;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	background-color: rgb(89, 4, 148);
+	background-image: linear-gradient(center bottom, rgb(210, 249, 205) 37%,
+		rgb(84, 240, 84) 69%);
+	box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px
+		rgba(0, 0, 0, 0.4);
+	position: relative;
+	overflow: hidden;
+	background-image: linear-gradient(-45deg, rgba(0, 0, 255, 0.2) 25%,
+		transparent 25%, transparent 50%, rgba(0, 0, 255, 0.2) 50%,
+		rgba(0, 0, 255, 0.2) 75%, transparent 75%, transparent);
+	z-index: 1;
+	background-size: 50px 50px;
+	animation: move 2s linear infinite;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	overflow: hidden;
+}
+</style>
+</head>
+<body>
+
+	<div data-role="page" id="pageWrapper">
+		<div id="siteWrapper">
+			<div data-role="header" id="headerWrapper" data-position="fixed">
+
+				<a href="#popupBasic" data-rel="popup" class="ui-btn-right">About</a>
+
+				<div data-role="popup" id="popupBasic" data-transition="turn"
+					data-position-to="window">
+					<a href="#" data-rel="back"
+						class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+					<h3>AES ENCRYPTION AND DECRYPTION TOOL</h3>
+					<p align="justify">
+						1.It is based on aes encryption decryption algorithm also called <b>Rijndaels
+							algorithm</b>.<br>
+					</p>
+
+					<p align="justify">
+						2.It has blocks of size 128 bits each,but with three different <b>key
+							lengths of 128,192 and 256</b>.<br>
+					</p>
+
+					<p align="justify">
+						3.The key size used for an AES cipher specifies the number of
+						repetitions of transformation rounds that convert the input,
+						called the plaintext, into the final output, called the
+						ciphertext. The number of cycles of repetition are as follows:<br>
+						<b>10 cycles of repetition for 128-bit keys.</b><br> <b>12
+							cycles of repetition for 192-bit keys.</b><br> <b>14 cycles
+							of repetition for 256-bit keys.</b><br>
+					</p>
+
+					<p>
+						4.It has rounds such as:<br> <b>a.key expansions<br>
+
+							b.sub bytes<br> c.shift rows<br> d.mixed columns
+						</b><br>
+					</p>
+
+					<p align="justify">
+						5.There are different <b>aes modes of operation</b> like<br>
+						CBC,ECB,CTR,OCB,CFB<br>
+					</p>
+
+					<p>
+						6.The<b> mode currently used is CTR</b>.<br>
+					</p>
+
+					<p align="justify">
+						7.<b>Counter mode operation:</b><br> 1) Load the initial
+						counter value in the top register which is the same for both the
+						sender and the receiver. It plays the same role as the IV in CFB
+						(and CBC) mode.<br> 2) Encrypt the contents of the counter
+						with the key and place the result in the bottom register.<br>
+
+						3)Take the first plaintext block P1 and XOR this to the contents
+						of the bottom register. The result of this is C1. Send C1 to the
+						receiver and update the counter.<br> 4)Continue in this
+						manner until the last plaintext block has been encrypted.<br>
+
+						5)The decryption is the reverse process. The ciphertext block is
+						XORed with the output of encrypted contents of counter value.
+						After decryption of each ciphertext block counter is updated as in
+						case of encryption.<br> <b>Implementation of Counter
+							Mode:</b><br> 1)Find key using the password and in turn use the
+						key to generate key schedule <br> 2)First 8 bytes are filled
+						with nonce(random number generated using date.gettime()) <br>
+						3)Fill the last 8 byte with a counter value <br> 4)This block
+						is ciphered with the key schedule <br> 5)The result is XORed
+						with the block of plain text and the nonce value is appended at
+						the beginning <br> 6)The decryption is the reverse process. <br>
+
+					</p>
+					<p align="justify">
+						8.Encryption and decryption is done on different kinds of data
+						such as number,text,video,files,audio and images.<br>
+					</p>
+
+					<p align="justify">
+						9.The GUI is built by using <b>Jquery mobile</b>.<br>
+					</p>
+					<p align="justify">
+						10. The different types of <b>formats supported</b> for each type
+						of data:<br> <b>a.Textual data</b><br> pdf<br> doc<br>
+						docx<br> doc<br> ppt<br> pptx<br> xls<br>
+						xlsx<br> csv<br> css<br> html<br> htm<br>
+						<br> <b>b.Video</b><br> mpg<br> mpeg<br> mov<br>
+						avi<br> asf<br> wm<br> wmx<br> wmv<br>
+						mp4<br> <br> <b>c.Images</b><br> png<br> tif<br>
+						gif<br> jpg<br> bmp<br> <br> <b>d.Audio</b><br>
+						mp3<br> wav<br> wma
+					</p>
+					<br> 11.<b>Advantages of using AES</b>:<br>
+					<p align="justify">
+						1) AES is more secure (it is less susceptible to cryptanalysis
+						than 3DES).<br> 2) AES supports larger key sizes than 3DES's
+						112 or 168 bits.<br> 3) AES is faster in both hardware and
+						software.<br> 4) AES is required by the latest U.S. and
+						international standards.<br> 5) It does not have message
+						dependency and hence a ciphertext block does not depend on the
+						previous plaintext blocks.<br> 6) It has nonce, counter to
+						produce different ciphers for the same key<br> 7) It does not
+						propagate error of transmission at all.
+					</p>
+					<br> 12.<b>Disadvantages of using AES</b>:<br>
+
+					<p align="justify">It requires a synchronous counter at sender
+						and receiver. Loss of synchronization leads to incorrect recovery
+						of plaintext.</p>
+
+				</div>
+
+				<!-- </div>
+			
+			
+	
+
+			
+<div data-role="header" id="headerWrapper">
+				<a href="#">Apurva Katti</a>
+				<h1>AES Encryption and Decryption</h1>
+				<a href="#">Neha</a>-->
+			</div>
+			<div data-role="content" id="contentWrapper" align="center">
+
+				<div id="tabs-1"
+					class="tab-content ui-tabs-nav-b ui-helper-reset ui-helper-clearfix ui-widget-content ui-widget-header ui-corner-all">
+					<ul class="nav nav-tabs" id="myTab">
+						<li style="background: rgba(123, 236, 255, 0.6)" class="active"><a
+							href="#tabs-2" data-toggle="tab">ATM Number Encryption</a></li>
+						<li style="background: rgba(123, 236, 255, 0.6)"><a
+							href="#tabs-3" data-toggle="tab">&nbsp;&nbsp;Data
+								Encryption&nbsp;&nbsp;</a></li>
+
+						<li style="background: rgba(123, 236, 255, 0.6)"><a
+							href="#tabs-4" data-toggle="tab">&nbsp;&nbsp;File
+								Encryption&nbsp;&nbsp;</a></li>
+						<li style="background: rgba(123, 236, 255, 0.6)"><a
+							href="#tabs-5" data-toggle="tab">&nbsp;&nbsp;Image
+								Encryption&nbsp;&nbsp;</a></li>
+						<li style="background: rgba(123, 236, 255, 0.6)"><a
+							href="#tabs-6" data-toggle="tab">&nbsp;&nbsp;Video
+								Encryption&nbsp;&nbsp;</a></li>
+						<li style="background: rgba(123, 236, 255, 0.6)"><a
+							href="#tabs-7" data-toggle="tab">&nbsp;&nbsp;&nbsp;Audio
+								Encryption&nbsp;&nbsp;&nbsp;</a></li>
+
+
+					</ul>
+					<div id="tabs-2" data-content-theme="b" data-theme="b"
+						class="tab-pane fade in active ui-body ui-body-b ui-corner-all">
+
+						<form id="fileEn3" method="post">
+
+							<div data-role="fieldcontain">
+								<label for="atmnum">Enter ATM number: <span
+									style="color: red;"> *</span></label> <input type="text" name="atmnum"
+									id="atmnum" value="" placeholder="ATM Number"
+									data-clear-btn="true" onblur="verifyAtmField()"
+									onfocus="clearAtmField()" /> <span id="atmError"
+									style="color: yellow; margin-left: 225px; font-style: italic"></span>
+							</div>
+							<div data-role="fieldcontain">
+								<label for="pwd">Enter Password:<span
+									style="color: red;"> *</span></label> <input type="password" name="pwd"
+									id="pwd" value="" data-clear-btn="true"
+									onblur="verifyPwdField()" onfocus="clearPwdField()" /> <span
+									id="pwdError"
+									style="color: yellow; margin-left: 225px; font-style: italic"></span>
+
+							</div>
+
+							<div data-role="fieldcontain">
+								<label for="bits" class="select">Choose bits:</label> <select
+									name="bits" id="bits">
+
+									<option value="128">128</option>
+									<option value="192">192</option>
+									<option value="256">256</option>
+
+								</select>
+							</div>
+
+							<div data-role="fieldcontain">
+								<label for="encrypt">Encrypted Text:</label>
+								<textarea name="encrypt" style="background-color: #2d2d2d"
+									id="encrypt" rows="2" cols="109" style="resize: none;"
+									data-role="none"></textarea>
+							</div>
+							<div data-role="fieldcontain">
+								<label for="decrypt">Decrypted Text:</label>
+								<textarea name="decrypt" id="decrypt"
+									style="background-color: #2d2d2d" rows="2" cols="109"
+									style="resize: none;" data-role="none"></textarea>
+							</div>
+							<div id="generic"
+								style="color: red; font-style: italic; font-weight: bold"></div>
+							<input id="submitBtn" type="submit" value="Submit" data-theme="b"
+								data-inline="true" onclick="submitForm();return false;" /> <input
+								type="reset" value="Reset" data-theme="b" data-inline="true"
+								onclick="refresh3();return false;" />
+							<script>
+								function clearAtmField() {
+									document.getElementById('atmError').innerHTML = "";
+									document.getElementById('atmnum').style.border = "";
+								}
+								function clearPwdField() {
+									document.getElementById('pwdError').innerHTML = "";
+									document.getElementById('pwd').style.border = "";
+								}
+								function verifyAtmField() {
+									document.getElementById("atmError").innerHTML = "";
+									if (document.getElementById('atmnum').value == "") {
+										document.getElementById('atmnum').style.border = "2px solid #F00";
+										document.getElementById("atmError").innerHTML = "Please enter ATM number";
+										return false;
+									} else {
+										var isValid = validateAtm();
+										if (isValid) {
+											return true;
+										} else {
+											return false;
+										}
+									}
+								}
+								function validateAtm() {
+									var title = document
+											.getElementById('atmnum').value;
+									var last = title[title.length - 1];
+									var j;
+									var sum1;
+
+									for (i = title.length, j = 0; i >= 0; i--, j++) {
+										arr_reverse[j] = title[i];
+									}
+									for (i = 2; i <= title.length; i++) {
+										if (i % 2 == 0) {
+											arr_reverse[i] = arr_reverse[i] * 2;
+										}
+									}
+									for (i = 2; i <= title.length; i++) {
+										if (arr_reverse[i] > 9) {
+											arr_reverse[i] = arr_reverse[i] - 9;
+										}
+									}
+									for (i = 2, sum = 0; i <= title.length; i++) {
+										sum = sum + parseInt(arr_reverse[i]);
+									}
+									sum1 = sum + parseInt(last);
+									valid = 0;
+									if (sum1 % 10 == 0) {
+										valid = 1;
+									}
+									if (valid == 0) {
+										document.getElementById("atmError").innerHTML = "Please enter valid ATM number";
+										return false;
+									} else {
+										return true;
+									}
+								}
+								function verifyPwdField() {
+									document.getElementById("pwdError").innerHTML = "";
+									if (document.getElementById('pwd').value == "") {
+										document.getElementById('pwd').style.border = "2px solid #F00";
+										document.getElementById("pwdError").innerHTML = "Please enter password";
+										return false;
+									} else {
+										return true;
+									}
+
+								}
+								function submitForm() {
+									document.getElementById("generic").innerHTML = "";
+									var pwd = verifyPwdField();
+									var atm = verifyAtmField();
+									if (pwd && atm) {
+										valid1();
+									} else {
+										document.getElementById("generic").innerHTML = "* Mandatory parameters are missing";
+									}
+								}
+								function refresh3() {
+									window.location.reload();
+								}
+							</script>
+
+						</form>
+
+					</div>
+
+					<div id="tabs-3" data-content-theme="b" data-theme="b"
+						class="tab-pane fade ui-body ui-body-b ui-corner-all">
+
+						<form id="fileEn2" method="post">
+
+							<div data-role="fieldcontain">
+								<label for="val3">Enter data:<span style="color: red;">
+										*</span></label>
+								<textarea name="val3" style="background-color: #2d2d2d"
+									id="val3" onblur="verifydataField()" rows="4" cols="105"
+									style="resize: none;" data-role="none" style="color:#ffffff"
+									style="border style:solid,color:black" data-clear-btn="true"
+									onfocus="cleardataField()"
+									onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}"></textarea>
+								<span id="dataError"
+									style="color: yellow; margin-left: 225px; font-style: italic"></span>
+							</div>
+							<div data-role="fieldcontain">
+								<label for="enc1">Enter encrypted data:<span
+									style="color: red;"> *</span></label>
+								<textarea name="enc1" style="background-color: #2d2d2d"
+									id="enc1" onblur="verifydataField()" rows="4" cols="105"
+									style="resize: none;" data-role="none" style="color:#ffffff"
+									style="border style:solid,color:black" data-clear-btn="true"
+									onfocus="cleardataFields()"
+									onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}"></textarea>
+								<span id="dataEncError"
+									style="color: yellow; margin-left: 225px; font-style: italic"></span>
+							</div>
+							<div data-role="fieldcontain">
+								<label for="pwd1">Enter Password:<span
+									style="color: red;"> *</span></label> <input type="password"
+									name="pwd1" id="pwd1" value="" data-clear-btn="true"
+									onblur="verifydataPwd()" onfocus="cleardatapwdField()" /> <span
+									id="datapwdError"
+									style="color: yellow; margin-left: 225px; font-style: italic"></span>
+
+							</div>
+
+
+							<div data-role="fieldcontain">
+
+								<label for="bits1" class="select">Choose bits:</label> <select
+									name="bits1" id="bits1">
+
+									<option value="128">128</option>
+									<option value="192">192</option>
+									<option value="256">256</option>
+
+								</select>
+							</div>
+							<div data-role="fieldcontain">
+								<label for="encrypt">Encrypted Text:</label>
+								<textarea name="encrypt1" id="encrypt1"
+									style="background-color: #2d2d2d"
+									style="font-family:Times New Roman;font-size:14px" rows="4"
+									cols="108" style="resize: none;" data-role="none"></textarea>
+							</div>
+							<div data-role="fieldcontain">
+								<label for="decrypt">Decrypted Text:</label>
+								<textarea name="decrypt1" id="decrypt1"
+									style="background-color: #2d2d2d"
+									style="font-family:Times New Roman;font-size:14px" rows="4"
+									cols="108" style="resize: none;" data-role="none"></textarea>
+							</div>
+							<div id="generic1"
+								style="color: red; font-style: italic; font-weight: bold"></div>
+
+							<input type="submit" value="Encrypt" data-theme="b"
+								data-inline="true" onclick="submitdataForm();return false;" />
+							<input type="reset" value="Reset" data-theme="b"
+								data-inline="true" onclick="refresh2();return false;" /> <input
+								type="submit" value="Decrypt" data-theme="b" data-inline="true"
+								onclick="submitdataForms();return false;" />
+							<script>
+								function cleardataField() {
+									document.getElementById('dataError').innerHTML = "";
+									document.getElementById('val3').style.border = "";
+								}
+								function cleardatapwdField() {
+									document.getElementById('datapwdError').innerHTML = "";
+									document.getElementById('pwd1').style.border = "";
+								}
+								function verifydataField() {
+									document.getElementById("dataError").innerHTML = "";
+									if (document.getElementById('val3').value == "") {
+										document.getElementById('val3').style.border = "2px solid #F00";
+										document.getElementById("dataError").innerHTML = "Please enter the data";
+										return false;
+									} else {
+										return true;
+									}
+								}
+
+								function verifydataPwd() {
+									document.getElementById("datapwdError").innerHTML = "";
+									if (document.getElementById('pwd1').value == "") {
+										document.getElementById('pwd1').style.border = "2px solid #F00";
+										document.getElementById("datapwdError").innerHTML = "Please enter password";
+										return false;
+									} else {
+										return true;
+									}
+
+								}
+								function submitdataForm() {
+									document.getElementById("generic1").innerHTML = "";
+									var pwddata = verifydataPwd();
+									var data = verifydataField();
+									if (pwddata && data) {
+										valid2();
+									} else {
+										document.getElementById("generic1").innerHTML = "* Mandatory parameters are missing";
+									}
+								}
+								function refresh2() {
+									window.location.reload();
+								}
+								function cleardataFields() {
+									document.getElementById('dataEncError').innerHTML = "";
+									document.getElementById('enc1').style.border = "";
+								}
+
+								function verifydataFields() {
+									document.getElementById("dataEncError").innerHTML = "";
+									if (document.getElementById('enc1').value == "") {
+										document.getElementById('enc1').style.border = "2px solid #F00";
+										document.getElementById("dataEncError").innerHTML = "Please enter the data";
+										return false;
+									} else {
+										return true;
+									}
+								}
+
+								function submitdataForms() {
+									document.getElementById("generic1").innerHTML = "";
+									var pwddatas = verifydataPwd();
+									var datas = verifydataFields();
+									if (pwddatas && datas) {
+										validate1();
+									} else {
+										document.getElementById("generic1").innerHTML = "* Mandatory parameters are missing";
+									}
+								}
+							</script>
+
+						</form>
+
+
+					</div>
+
+
+					<div id="tabs-4" data-content-theme="b" data-theme="b"
+						class="tab-pane fade ui-body ui-body-b ui-corner-all">
+
+						<form id="fileEn5" method="post">
+
+
+							<div data-role="fieldcontain">
+								<label for="files3">Upload Files<span
+									style="color: red;"> *</span></label> <input id="files3" type="file"
+									onblur="verifyfiledataField()" data-clear-btn="true"
+									onfocus="clearfiledataField()"
+									accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.csv,.html,.htm,.txt,.css"
+									data-clear-btn="true" value="" multiple /> <span
+									id="filedataError"
+									style="color: yellow; margin-left: 225px; font-style: italic"></span>
+
+								<output id="result1"></output>
+								<output id="result2"></output>
+								<output id="result3"></output>
+								<output id="result4"></output>
+								<div id="progress_bar4">
+									<div class="percent4">0%</div>
+								</div>
+								<script>
+									var reader;
+									var progress4 = document
+											.querySelector('.percent4');
+
+									function abortRead() {
+										reader.abort();
+									}
+
+									function errorHandler(evt) {
+										switch (evt.target.error.code) {
+										case evt.target.error.NOT_FOUND_ERR:
+											alert('File Not Found!');
+											break;
+										case evt.target.error.NOT_READABLE_ERR:
+											alert('File is not readable');
+											break;
+										case evt.target.error.ABORT_ERR:
+											break; // noop
+										default:
+											alert('An error occurred reading this file.');
+										}
+										;
+									}
+
+									function updateProgress4(evt) {
+										// evt is an ProgressEvent.
+										if (evt.lengthComputable) {
+											var percentLoaded = Math
+													.round((evt.loaded / evt.total) * 100);
+											// console.log('next');
+											// console.log(percentLoaded);
+
+											// Increase the progress bar length.
+											if (percentLoaded < 100) {
+												progress4.style.width = percentLoaded
+														+ '%';
+												progress4.textContent = percentLoaded
+														+ '%';
+											}
+										}
+									}
+
+									function handleFileSelect(evt) {
+										// Reset progress indicator on new file selection.
+										progress4.style.width = '0%';
+										progress4.textContent = '0%';
+
+										reader = new FileReader();
+										reader.onerror = errorHandler;
+										reader.onprogress = updateProgress4;
+										reader.onabort = function(e) {
+											alert('File read cancelled');
+										};
+										reader.onloadstart = function(e) {
+											document
+													.getElementById('progress_bar4').className = 'loading';
+											//console.log('start1');
+										};
+										reader.onload = function(e) {
+											// Ensure that the progress bar displays 100% at the end.
+											progress4.style.width = '100%';
+											progress4.textContent = '100%';
+											setTimeout(
+													"document.getElementById('progress_bar4').className='';",
+													2000);
+										}
+
+										// Read in the image file as a binary string.
+										reader
+												.readAsBinaryString(evt.target.files[0]);
+									}
+
+									document.getElementById('files3')
+											.addEventListener('change',
+													handleFileSelect, false);
+								</script>
+							</div>
+
+
+
+
+							<div data-role="fieldcontain">
+								<label for="val10">Enter Password:<span
+									style="color: red;"> *</span></label> <input type="password"
+									name="val10" id="val10" value="" data-clear-btn="true"
+									onblur="verifyfilePwd()" onfocus="clearfilepwdField()" /> <span
+									id="filepwderror"
+									style="color: yellow; margin-left: 225px; font-style: bold"></span>
+
+							</div>
+
+
+							<div data-role="fieldcontain">
+								<label for="val12" class="select">Choose bits:</label> <select
+									name="val12" id="val12">
+
+									<option value="128">128</option>
+									<option value="192">192</option>
+									<option value="256">256</option>
+
+								</select>
+							</div>
+							<div id="generic2"
+								style="color: red; font-style: italic; font-weight: bold"></div>
+							<div id="generics"
+								style="color: white; font-weight: bold; text-align: center; font-family: 'Tangerine', serif; font-size: 40px; text-shadow: 4px 4px 4px #aaa"></div>
+
+							<input type="button" id="btn6"
+								onclick="submitfileenc();return false;" value="Encrypt"
+								data-theme="b" data-inline="true" /> <input type="submit"
+								id="btn7" onclick="submitfiledec();return false;"
+								value="Decrypt" data-theme="b" data-inline="true" /> <input
+								type="reset" value="Reset" data-theme="b" data-inline="true"
+								onclick="refresh5();return false;" />
+							<script>
+								function clearfiledataField() {
+									document.getElementById('filedataError').innerHTML = "";
+									document.getElementById('files3').style.border = "";
+								}
+								function clearfilepwdField() {
+									document.getElementById('filepwderror').innerHTML = "";
+									document.getElementById('val10').style.border = "";
+								}
+								function verifyfiledataField() {
+									//document.getElementById("filedataError").innerHTML = "";
+									if (document.getElementById('files3').value == "") {
+										document.getElementById('files3').style.border = "2px solid #F00";
+										document
+												.getElementById("filedataError").innerHTML = "Please select a file";
+										return false;
+									} else {
+										return true;
+									}
+								}
+
+								function verifyfilePwd() {
+									document.getElementById("filepwderror").innerHTML = "";
+									if (document.getElementById('val10').value == "") {
+										document.getElementById('val10').style.border = "2px solid #F00";
+										document.getElementById("filepwderror").innerHTML = "Please enter password";
+										return false;
+									} else {
+										return true;
+									}
+
+								}
+								function submitfileenc() {
+									document.getElementById("generic2").innerHTML = "";
+									var filecont = verifyfiledataField();
+									var pwdfile = verifyfilePwd();
+									if (pwdfile && filecont) {
+										load7();
+									} else {
+										document.getElementById("generic2").innerHTML = "* Mandatory parameters are missing";
+									}
+								}
+								function submitfiledec() {
+									document.getElementById("generic2").innerHTML = "";
+									var filecont = verifyfiledataField();
+									var pwdfile = verifyfilePwd();
+									if (pwdfile && filecont) {
+										load8();
+									} else {
+										document.getElementById("generic2").innerHTML = "* Mandatory parameters are missing";
+									}
+								}
+								function refresh5() {
+									window.location.reload();
+								}
+							</script>
+
+						</form>
+
+					</div>
+
+					<div id="tabs-5" data-content-theme="b" data-theme="b"
+						class="tab-pane fade ui-body ui-body-b ui-corner-all">
+
+						<form id="fileEn" method="post">
+
+
+							<div data-role="fieldcontain">
+								<label for="files">Upload Image Files<span
+									style="color: red;"> *</span></label> <input id="files" type="file"
+									onblur="verifyimagedataField()" data-clear-btn="true"
+									onfocus="clearimagedataField()"
+									accept="image/png,image/tif,image/gif,image/jpeg,image/bmp,image/jpg"
+									data-clear-btn="true" value="" multiple /> <span
+									id="imagedataError"
+									style="color: yellow; margin-left: 225px; font-style: italic"></span>
+
+								<output id="result1"></output>
+								<output id="result2"></output>
+								<output id="result3"></output>
+								<output id="result4"></output>
+								<div id="progress_bar2">
+									<div class="percent2">0%</div>
+								</div>
+								<script>
+									var reader;
+									var progress1 = document
+											.querySelector('.percent2');
+
+									function abortRead() {
+										reader.abort();
+									}
+
+									function errorHandler(evt) {
+										switch (evt.target.error.code) {
+										case evt.target.error.NOT_FOUND_ERR:
+											alert('File Not Found!');
+											break;
+										case evt.target.error.NOT_READABLE_ERR:
+											alert('File is not readable');
+											break;
+										case evt.target.error.ABORT_ERR:
+											break; // noop
+										default:
+											alert('An error occurred reading this file.');
+										}
+										;
+									}
+
+									function updateProgress1(evt) {
+										// evt is an ProgressEvent.
+										if (evt.lengthComputable) {
+											var percentLoaded = Math
+													.round((evt.loaded / evt.total) * 100);
+											// console.log('next');
+											// console.log(percentLoaded);
+
+											// Increase the progress bar length.
+											if (percentLoaded < 100) {
+												progress1.style.width = percentLoaded
+														+ '%';
+												progress1.textContent = percentLoaded
+														+ '%';
+											}
+										}
+									}
+
+									function handleFileSelect(evt) {
+										// Reset progress indicator on new file selection.
+										progress1.style.width = '0%';
+										progress1.textContent = '0%';
+
+										reader = new FileReader();
+										reader.onerror = errorHandler;
+										reader.onprogress = updateProgress1;
+										reader.onabort = function(e) {
+											alert('File read cancelled');
+										};
+										reader.onloadstart = function(e) {
+											document
+													.getElementById('progress_bar2').className = 'loading';
+											//console.log('start1');
+										};
+										reader.onload = function(e) {
+											// Ensure that the progress bar displays 100% at the end.
+											progress1.style.width = '100%';
+											progress1.textContent = '100%';
+											setTimeout(
+													"document.getElementById('progress_bar2').className='';",
+													2000);
+										}
+
+										// Read in the image file as a binary string.
+										reader
+												.readAsBinaryString(evt.target.files[0]);
+									}
+
+									document.getElementById('files')
+											.addEventListener('change',
+													handleFileSelect, false);
+								</script>
+							</div>
+
+
+
+
+							<div data-role="fieldcontain">
+								<label for="pwdF">Enter Password:<span
+									style="color: red;"> *</span></label> <input type="password"
+									name="pwdF" id="val4" value="" data-clear-btn="true"
+									onblur="verifyimagePwd()" onfocus="clearimagepwdField()" /> <span
+									id="imagepwderror"
+									style="color: yellow; margin-left: 225px; font-style: italic"></span>
+							</div>
+
+
+							<div data-role="fieldcontain">
+								<label for="bitsF" class="select">Choose bits:</label> <select
+									name="bitsF" id="val5">
+
+									<option value="128">128</option>
+									<option value="192">192</option>
+									<option value="256">256</option>
+
+								</select>
+							</div>
+							<div id="generic3"
+								style="color: red; font-style: italic; font-weight: bold"></div>
+							<div id="generics2"
+								style="color: white; font-weight: bold; text-align: center; font-family: 'Tangerine', serif; font-size: 40px; text-shadow: 4px 4px 4px #aaa"></div>
+
+							<input type="button" id="btn"
+								onclick="submitimageenc();return false;" value="Encrypt"
+								data-theme="b" data-inline="true" /> <input type="submit"
+								id="btn1" onclick="submitimagedec();return false;"
+								value="Decrypt" data-theme="b" data-inline="true" /> <input
+								type="reset" value="Reset" data-theme="b" data-inline="true"
+								onclick="refresh();return false;" />
+							<script>
+								function clearimagedataField() {
+									document.getElementById('imagedataError').innerHTML = "";
+									document.getElementById('files').style.border = "";
+								}
+								function clearimagepwdField() {
+									document.getElementById('imagepwderror').innerHTML = "";
+									document.getElementById('val4').style.border = "";
+								}
+								function verifyimagedataField() {
+									//document.getElementById("filedataError").innerHTML = "";
+									if (document.getElementById('files').value == "") {
+										document.getElementById('files').style.border = "2px solid #F00";
+										document
+												.getElementById("imagedataError").innerHTML = "Please select an image file";
+										return false;
+									} else {
+										return true;
+									}
+								}
+
+								function verifyimagePwd() {
+									document.getElementById("imagepwderror").innerHTML = "";
+									if (document.getElementById('val4').value == "") {
+										document.getElementById('val4').style.border = "2px solid #F00";
+										document
+												.getElementById("imagepwderror").innerHTML = "Please enter password";
+										return false;
+									} else {
+										return true;
+									}
+
+								}
+								function submitimageenc() {
+									document.getElementById("generic3").innerHTML = "";
+									var imagecont = verifyimagedataField();
+									var pwdimage = verifyimagePwd();
+									if (pwdimage && imagecont) {
+										load1();
+									} else {
+										document.getElementById("generic3").innerHTML = "* Mandatory parameters are missing";
+									}
+								}
+								function submitimagedec() {
+									document.getElementById("generic3").innerHTML = "";
+									var imagecont = verifyimagedataField();
+									var pwdimage = verifyimagePwd();
+									if (pwdimage && imagecont) {
+										load2();
+									} else {
+										document.getElementById("generic3").innerHTML = "* Mandatory parameters are missing";
+									}
+								}
+								function refresh() {
+									window.location.reload();
+								}
+							</script>
+
+						</form>
+
+					</div>
+
+					<div id="tabs-6" data-content-theme="b" data-theme="b"
+						class="tab-pane fade ui-body ui-body-b ui-corner-all">
+
+						<form id="fileEn6" method="post">
+
+
+							<div data-role="fieldcontain">
+								<label for="files2">Upload Video Files<span
+									style="color: red;"> *</span></label> <input id="files2" type="file"
+									onblur="verifyvideodataField()" data-clear-btn="true"
+									onfocus="clearvideodataField()"
+									accept=".mpg,.mpeg,.avi,.asf,.mp4,.mov,.wm,.wmx,.wmv,video/x-ms-wm,video/x-ms-wmx,video/x-ms-wmv,video/x-ms-asf"
+									data-clear-btn="true" value="" multiple /> <span
+									id="videodataError"
+									style="color: yellow; margin-left: 225px; font-style: italic"></span>
+
+								<output id="result1"></output>
+								<output id="result2"></output>
+								<output id="result3"></output>
+								<output id="result4"></output>
+								<div id="progress_bar3">
+									<div class="percent3">0%</div>
+								</div>
+								<script>
+									var reader;
+									var progress3 = document
+											.querySelector('.percent3');
+
+									function abortRead() {
+										reader.abort();
+									}
+
+									function errorHandler(evt) {
+										//console.log('error');
+										switch (evt.target.error.code) {
+										case evt.target.error.NOT_FOUND_ERR:
+											alert('File Not Found!');
+											break;
+										case evt.target.error.NOT_READABLE_ERR:
+											alert('File is not readable');
+											break;
+										case evt.target.error.ABORT_ERR:
+											break; // noop
+										default:
+											alert('An error occurred reading this file.');
+										}
+										;
+									}
+
+									function updateProgress3(evt) {
+										// evt is an ProgressEvent.
+
+										if (evt.lengthComputable) {
+											var percentLoaded = Math
+													.round((evt.loaded / evt.total) * 100);
+											// Increase the progress bar length.
+											// console.log('pre');
+											//  					console.log(percentLoaded);
+
+											if (percentLoaded < 100) {
+												progress3.style.width = percentLoaded
+														+ '%';
+												progress3.textContent = percentLoaded
+														+ '%';
+												//  console.log(progress.style.width);
+												//console.log(progress.textContent);
+
+											}
+										}
+									}
+
+									function handleFileSelect(evt) {
+										// Reset progress indicator on new file selection.
+										progress3.style.width = '0%';
+										progress3.textContent = '0%';
+
+										reader = new FileReader();
+										reader.onerror = errorHandler;
+										reader.onprogress = updateProgress3;
+										reader.onabort = function(e) {
+											alert('File read cancelled');
+										};
+										reader.onloadstart = function(e) {
+											document
+													.getElementById('progress_bar3').className = 'loading';
+											// console.log('start');
+
+										};
+										reader.onload = function(e) {
+											// Ensure that the progress bar displays 100% at the end.
+											progress3.style.width = '100%';
+											progress3.textContent = '100%';
+											setTimeout(
+													"document.getElementById('progress_bar3').className='';",
+													2000);
+											//console.log('settimeout');
+
+										}
+
+										// Read in the image file as a binary string.
+										reader
+												.readAsBinaryString(evt.target.files[0]);
+									}
+
+									document.getElementById('files2')
+											.addEventListener('change',
+													handleFileSelect, false);
+								</script>
+							</div>
+
+
+
+
+							<div data-role="fieldcontain">
+								<label for="val8">Enter Password:<span
+									style="color: red;"> *</span></label> <input type="password"
+									name="val8" id="val8" value="" data-clear-btn="true"
+									onblur="verifyvideoPwd()" onfocus="clearvideopwdField()" /> <span
+									id="videopwderror"
+									style="color: yellow; margin-left: 225px; font-style: italic"></span>
+
+							</div>
+
+
+							<div data-role="fieldcontain">
+								<label for="val9" class="select">Choose bits:</label> <select
+									name="val9" id="val9">
+
+									<option value="128">128</option>
+									<option value="192">192</option>
+									<option value="256">256</option>
+
+								</select>
+							</div>
+							<div id="generic4"
+								style="color: red; font-style: italic; font-weight: bold"></div>
+							<div id="generics3"
+								style="color: white; font-weight: bold; text-align: center; font-family: 'Tangerine', serif; font-size: 40px; text-shadow: 4px 4px 4px #aaa"></div>
+
+							<input type="button" id="btn4"
+								onclick="submitvideoenc();return false;" value="Encrypt"
+								data-theme="b" data-inline="true" /> <input type="submit"
+								id="btn5" onclick="submitvideodec();return false;"
+								value="Decrypt" data-theme="b" data-inline="true" /> <input
+								type="reset" value="Reset" data-theme="b" data-inline="true"
+								onclick="refresh4();return false;" />
+							<script>
+								function clearvideodataField() {
+									document.getElementById('videodataError').innerHTML = "";
+									document.getElementById('files2').style.border = "";
+								}
+								function clearvideopwdField() {
+									document.getElementById('videopwderror').innerHTML = "";
+									document.getElementById('val8').style.border = "";
+								}
+								function verifyvideodataField() {
+									//document.getElementById("filedataError").innerHTML = "";
+									if (document.getElementById('files2').value == "") {
+										document.getElementById('files2').style.border = "2px solid #F00";
+										document
+												.getElementById("videodataError").innerHTML = "Please select a video file";
+										return false;
+									} else {
+										return true;
+									}
+								}
+
+								function verifyvideoPwd() {
+									document.getElementById("videopwderror").innerHTML = "";
+									if (document.getElementById('val8').value == "") {
+										document.getElementById('val8').style.border = "2px solid #F00";
+										document
+												.getElementById("videopwderror").innerHTML = "Please enter password";
+										return false;
+									} else {
+										return true;
+									}
+
+								}
+								function submitvideoenc() {
+									document.getElementById("generic4").innerHTML = "";
+									var videocont = verifyvideodataField();
+									var pwdvideo = verifyvideoPwd();
+									if (pwdvideo && videocont) {
+										load5();
+									} else {
+										document.getElementById("generic4").innerHTML = "* Mandatory parameters are missing";
+									}
+								}
+								function submitvideodec() {
+									document.getElementById("generic4").innerHTML = "";
+									var videocont = verifyvideodataField();
+									var pwdvideo = verifyvideoPwd();
+									if (pwdvideo && videocont) {
+										load6();
+									} else {
+										document.getElementById("generic4").innerHTML = "* Mandatory parameters are missing";
+									}
+								}
+								function refresh4() {
+									window.location.reload();
+								}
+							</script>
+
+						</form>
+
+					</div>
+					<div id="tabs-7" data-content-theme="b" data-theme="b"
+						class="tab-pane fade ui-body ui-body-b ui-corner-all">
+
+						<form id="fileEn7" method="post">
+
+
+							<div data-role="fieldcontain">
+								<label for="files1">Upload Audio Files<span
+									style="color: red;"> *</span></label> <input id="files1" type="file"
+									onblur="verifyaudiodataField()" data-clear-btn="true"
+									onfocus="clearaudiodataField()"
+									accept="audio/mp3,audio/wav,audio/x-ms-wma"
+									data-clear-btn="true" value="" multiple /> <span
+									id="audiodataError"
+									style="color: yellow; margin-left: 225px; font-style: italic"></span>
+
+								<output id="result1"></output>
+								<output id="result2"></output>
+								<output id="result3"></output>
+								<output id="result4"></output>
+								<div id="progress_bar1">
+									<div class="percent1">0%</div>
+								</div>
+								<script>
+									var reader;
+									var progress = document
+											.querySelector('.percent1');
+
+									function abortRead() {
+										reader.abort();
+									}
+
+									function errorHandler(evt) {
+										//console.log('error');
+										switch (evt.target.error.code) {
+										case evt.target.error.NOT_FOUND_ERR:
+											alert('File Not Found!');
+											break;
+										case evt.target.error.NOT_READABLE_ERR:
+											alert('File is not readable');
+											break;
+										case evt.target.error.ABORT_ERR:
+											break; // noop
+										default:
+											alert('An error occurred reading this file.');
+										}
+										;
+									}
+
+									function updateProgress(evt) {
+										// evt is an ProgressEvent.
+
+										if (evt.lengthComputable) {
+											var percentLoaded = Math
+													.round((evt.loaded / evt.total) * 100);
+											// Increase the progress bar length.
+											// console.log('pre');
+											//  					console.log(percentLoaded);
+
+											if (percentLoaded < 100) {
+												progress.style.width = percentLoaded
+														+ '%';
+												progress.textContent = percentLoaded
+														+ '%';
+												//  console.log(progress.style.width);
+												//console.log(progress.textContent);
+
+											}
+										}
+									}
+
+									function handleFileSelect(evt) {
+										// Reset progress indicator on new file selection.
+										progress.style.width = '0%';
+										progress.textContent = '0%';
+
+										reader = new FileReader();
+										reader.onerror = errorHandler;
+										reader.onprogress = updateProgress;
+										reader.onabort = function(e) {
+											alert('File read cancelled');
+										};
+										reader.onloadstart = function(e) {
+											document
+													.getElementById('progress_bar1').className = 'loading';
+											// console.log('start');
+
+										};
+										reader.onload = function(e) {
+											// Ensure that the progress bar displays 100% at the end.
+											progress.style.width = '100%';
+											progress.textContent = '100%';
+											setTimeout(
+													"document.getElementById('progress_bar1').className='';",
+													2000);
+											//console.log('settimeout');
+
+										}
+
+										// Read in the image file as a binary string.
+										reader
+												.readAsBinaryString(evt.target.files[0]);
+									}
+
+									document.getElementById('files1')
+											.addEventListener('change',
+													handleFileSelect, false);
+								</script>
+							</div>
+
+
+
+
+							<div data-role="fieldcontain">
+								<label for="val6">Enter Password:<span
+									style="color: red;"> *</span></label> <input type="password"
+									name="val6" id="val6" value="" data-clear-btn="true"
+									onblur="verifyaudioPwd()" onfocus="clearaudiopwdField()" /> <span
+									id="audiopwderror"
+									style="color: yellow; margin-left: 225px; font-style: italic"></span>
+
+							</div>
+
+
+							<div data-role="fieldcontain">
+								<label for="val7" class="select">Choose bits:</label> <select
+									name="val7" id="val7">
+
+									<option value="128">128</option>
+									<option value="192">192</option>
+									<option value="256">256</option>
+
+								</select>
+							</div>
+							<div id="generic5"
+								style="color: red; font-style: italic; font-weight: bold"></div>
+							<div id="generics1"
+								style="color: white; font-weight: bold; text-align: center; font-family: 'Tangerine', serif; font-size: 40px; text-shadow: 4px 4px 4px #aaa"></div>
+
+							<input type="button" id="btn2"
+								onclick="submitaudioenc();return false;" value="Encrypt"
+								data-theme="b" data-inline="true" /> <input type="submit"
+								id="btn3" onclick="submitaudiodec();return false;"
+								value="Decrypt" data-theme="b" data-inline="true" /> <input
+								type="reset" value="Reset" data-theme="b" data-inline="true"
+								onclick="refresh2();return false;" />
+							<script>
+								function clearaudiodataField() {
+									document.getElementById('audiodataError').innerHTML = "";
+									document.getElementById('files1').style.border = "";
+								}
+								function clearaudiopwdField() {
+									document.getElementById('audiopwderror').innerHTML = "";
+									document.getElementById('val6').style.border = "";
+								}
+								function verifyaudiodataField() {
+									//document.getElementById("filedataError").innerHTML = "";
+									if (document.getElementById('files1').value == "") {
+										document.getElementById('files1').style.border = "2px solid #F00";
+										document
+												.getElementById("audiodataError").innerHTML = "Please select an audio file";
+										return false;
+									} else {
+										return true;
+									}
+								}
+
+								function verifyaudioPwd() {
+									document.getElementById("audiopwderror").innerHTML = "";
+									if (document.getElementById('val6').value == "") {
+										document.getElementById('val6').style.border = "2px solid #F00";
+										document
+												.getElementById("audiopwderror").innerHTML = "Please enter password";
+										return false;
+									} else {
+										return true;
+									}
+
+								}
+								function submitaudioenc() {
+									document.getElementById("generic5").innerHTML = "";
+									var audiocont = verifyaudiodataField();
+									var pwdaudio = verifyaudioPwd();
+									if (pwdaudio && audiocont) {
+										load3();
+									} else {
+										document.getElementById("generic5").innerHTML = "* Mandatory parameters are missing";
+									}
+								}
+								function submitaudiodec() {
+									document.getElementById("generic5").innerHTML = "";
+									var audiocont = verifyaudiodataField();
+									var pwdaudio = verifyaudioPwd();
+									if (pwdaudio && audiocont) {
+										load4();
+									} else {
+										document.getElementById("generic5").innerHTML = "* Mandatory parameters are missing";
+									}
+								}
+								function refresh2() {
+									window.location.reload();
+								}
+							</script>
+
+						</form>
+
+					</div>
+				</div>
+				<div data-role="footer" data-position="absolute">
+					<div id="all">
+						<br>
+						<br>
+						<h3
+							style="background: transparent; font-weight: bold; color: white; align: center">
+							<mark>SIR M VISVESVARAYA INSTITUTE OF TECHNOLOGY</mark>
+						</h3>
+						<br>
+						<h4
+							style="background: transparent; font-weight: bold; color: white; align: center">
+							<mark>APURVA G KATTI&nbsp;(1MV12CS011)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NEHA S&nbsp;(1MV12CS060)</mark>
+						</h4>
+
+					</div>
+				</div>
+			</div>
+			<!-- End of content wrapper -->
+		</div>
+		<!-- End of site wrapper -->
+	</div>
+	<!-- End of page wrapper -->
+
+</body>
+</html>
+

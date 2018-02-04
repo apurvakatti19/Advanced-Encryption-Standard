@@ -1,0 +1,29 @@
+#pageWrapper {
+	height: 100%;
+	margin-left: 5%;
+}
+
+#siteWrapper {
+	width: 80%;
+}
+
+#background {
+	background-color: white;
+	background-repeat: repeat-x;
+}
+
+#headerWrapper {
+	height: 100px;
+	position: relative;
+	text-align: center
+}
+
+#headerBackground {
+	position: absolute;
+	z-index: 1;
+	background: #ffffff;
+}
+
+#contentWrapper {
+	background:rgba(123, 236, 255, 0.6);
+}
